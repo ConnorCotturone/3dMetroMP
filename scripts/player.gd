@@ -9,6 +9,7 @@ const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
 	if animation_player:
+		animation_player.speed_scale = 1.5
 		animation_player.play("idle")
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +19,8 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		if !animation_player.is_playing() || animation_player.current_animation != "Jump":
+			animation_player.play("Jump")
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -37,11 +40,11 @@ func _physics_process(delta: float) -> void:
 			
 	var direction = (head.transform.basis * Vector3(0, 0, input_dir))
 	if direction:
-		if !animation_player.is_playing() || animation_player.current_animation != "Walk":
+		if (!animation_player.is_playing() || animation_player.current_animation != "Walk") && animation_player.current_animation != "Jump":
 			animation_player.play("Walk")
 		velocity.z = direction.z * SPEED
 	else:
-		if !animation_player.is_playing() || animation_player.current_animation != "Idle":
+		if (!animation_player.is_playing() || animation_player.current_animation != "Idle") && animation_player.current_animation != "Jump":
 			animation_player.play("Idle")
 		velocity.z = 0.0
 		

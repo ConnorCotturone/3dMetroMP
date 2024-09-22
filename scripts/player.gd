@@ -22,5 +22,3 @@ func _physics_process(delta: float) -> void:
 		if !animation_player.is_playing() || animation_player.current_animation != "Jump":
 			animation_player.play("Jump")
 		velocity.y = JUMP_VELOCITY
-
-	

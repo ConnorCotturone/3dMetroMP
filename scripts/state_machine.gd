@@ -11,6 +11,7 @@ func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
+			print(child.name)
 			child.transition.connect(on_child_transition)
 		else:
 			push_warning("State machine contains incompatible child node")
@@ -18,6 +19,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	CURRENT_STATE.update(delta)
+	#print(CURRENT_STATE.name)
 
 func _physics_process(delta: float):
 	CURRENT_STATE.physics_update(delta)

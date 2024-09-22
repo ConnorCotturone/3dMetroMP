@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://c1ywqjwwhakla"]
+[gd_scene load_steps=21 format=4 uid="uid://c1ywqjwwhakla"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1qfin"]
 [ext_resource type="Texture2D" uid="uid://c7af0nfysjarb" path="res://assets/animations/TempCharacter_Knight_diffuse.png" id="2_51jkr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dekv26t66qjv0" path="res://assets/animations/TempCharacter_Knight_normal.png" id="3_u4r81"]
 [ext_resource type="Script" path="res://scripts/idle_player_state.gd" id="4_mujtt"]
 [ext_resource type="Script" path="res://scripts/walking_player_state.gd" id="5_f1jgl"]
+[ext_resource type="Script" path="res://scripts/sprint_player_state.gd" id="7_0w24e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g73qg"]
 size = Vector3(0.35, 1.6, 0.4)
@@ -5233,3 +5234,6 @@ script = ExtResource("4_mujtt")
 
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_f1jgl")
+
+[node name="SprintPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_0w24e")

@@ -1,8 +1,15 @@
 class_name State
-
 extends Node
 
-signal transition(new_state: StringName)
+@export
+var animation_name: String
+@export
+var move_speed: float = 5.0
+
+var gravity: int = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+## Hold a reference to the parent so that it can be controlled by the state
+var parent: Player
 
 func enter() -> void:
 	pass
@@ -10,8 +17,13 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func update(delta: float) -> void:
-	pass
+func process_input(event: InputEvent) -> State:
+	return null
 
-func physics_update(delta: float) -> void:
-	pass
+func process_frame(delta: float) -> State:
+	parent.animation_player.play(animation_name)
+	print(animation_name)
+	return null
+
+func process_physics(delta: float) -> State:
+	return null

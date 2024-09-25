@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://sw8q6uvs2w2s"]
+[gd_scene load_steps=18 format=4 uid="uid://sw8q6uvs2w2s"]
 
 [ext_resource type="Texture2D" uid="uid://c5oxk5do3mam6" path="res://assets/skybox2.jpg" id="1_i71e3"]
 [ext_resource type="PackedScene" uid="uid://c1ywqjwwhakla" path="res://scenes/player.tscn" id="1_obllv"]
+[ext_resource type="PackedScene" uid="uid://cjyhphlkm2wx8" path="res://assets/test-map2.glb" id="2_ak73e"]
 [ext_resource type="Shader" path="res://scripts/main.gdshader" id="3_qaw8g"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0413c"]
@@ -67,6 +68,9 @@ size = Vector3(3.94458, 1, 50.1033)
 [sub_resource type="BoxShape3D" id="BoxShape3D_l4aa4"]
 size = Vector3(3.99359, 1, 4.09961)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jpptj"]
+size = Vector3(1.99399, 1, 19.6279)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hdf7c"]
 render_priority = 0
 shader = ExtResource("3_qaw8g")
@@ -106,8 +110,12 @@ handle_input_locally = false
 size = Vector2i(576, 324)
 render_target_update_mode = 4
 
+[node name="test-map2" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_ak73e")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -7.5, 0)
+visible = false
 
 [node name="Cube" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
 transform = Transform3D(2, 0, 0, 0, 20, 0, 0, 0, 50, 0, -5, 0)
@@ -142,6 +150,10 @@ shape = SubResource("BoxShape3D_l4aa4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 2.00522, -53.3694)
 shape = SubResource("BoxShape3D_l4aa4")
 
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0102234, -0.996889, -75.007)
+shape = SubResource("BoxShape3D_jpptj")
+
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_obllv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0355583, 0.0480585, 0.065089)
 
@@ -150,6 +162,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0919654, 1.30328, -0.06508
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player/CameraMount"]
 transform = Transform3D(-4.37114e-08, -0.139173, 0.990268, 0, 0.990268, 0.139173, -1, 6.08345e-09, -4.3286e-08, 6.94978, 0.795944, 0)
+visible = false
 
 [node name="PostProcessing" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player/CameraMount/Camera3D"]
 transform = Transform3D(-4.37114e-08, 4.44089e-16, -1, -0.139173, 0.990268, 6.08345e-09, 0.990268, 0.139173, -4.3286e-08, 3.01319e-07, -1.16702, -7.12513)

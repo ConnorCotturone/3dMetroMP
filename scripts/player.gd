@@ -1,24 +1,21 @@
+class_name Player
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
-@onready var temp_character: Node3D = $Visuals/TempCharacter
-@onready var animation_player: AnimationPlayer = $Visuals/TempCharacter/AnimationPlayer
-@onready var head: Node3D = $Head
+@onready
+var animation_player = $Visuals/TempCharacter/AnimationPlayer
+@onready
+var player_state_machine = $PlayerStateMachine
 
 func _ready() -> void:
 	if animation_player:
 		animation_player.speed_scale = 1.5
-		animation_player.play("idle")
+	player_state_machine.init(self)
+
+func _unhandled_input(event: InputEvent) -> void:
+	player_state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	player_state_machine.process_physics(delta)
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		if !animation_player.is_playing() || animation_player.current_animation != "Jump":
-			animation_player.play("Jump")
-		velocity.y = JUMP_VELOCITY
+func _process(delta: float) -> void:
+	player_state_machine.process_frame(delta)

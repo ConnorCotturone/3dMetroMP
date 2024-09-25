@@ -5,6 +5,8 @@ extends Node
 var animation_name: String
 @export
 var move_speed: float = 5.0
+@export
+var sprint_speed: float = 7.0
 
 var gravity: int = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -22,7 +24,6 @@ func process_input(event: InputEvent) -> State:
 
 func process_frame(delta: float) -> State:
 	parent.animation_player.play(animation_name)
-	print(animation_name)
 	return null
 
 func process_physics(delta: float) -> State:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://sw8q6uvs2w2s"]
+[gd_scene load_steps=19 format=4 uid="uid://sw8q6uvs2w2s"]
 
 [ext_resource type="Texture2D" uid="uid://c5oxk5do3mam6" path="res://assets/skybox2.jpg" id="1_i71e3"]
 [ext_resource type="PackedScene" uid="uid://c1ywqjwwhakla" path="res://scenes/player.tscn" id="1_obllv"]
@@ -60,16 +60,19 @@ shadow_mesh = SubResource("ArrayMesh_4qxcn")
 size = Vector3(3.424, 1, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cf7j6"]
-size = Vector3(3.98682, 1, 49.9424)
+size = Vector3(3.98682, 9.96924, 49.9424)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o3axy"]
 size = Vector3(3.94458, 1, 50.1033)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l4aa4"]
-size = Vector3(3.99359, 1, 4.09961)
+size = Vector3(3.99359, 2.62402, 4.09961)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jpptj"]
 size = Vector3(1.99399, 1, 19.6279)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ax8dh"]
+size = Vector3(3.83734, 30.9769, 24.9775)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hdf7c"]
 render_priority = 0
@@ -115,7 +118,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -7.5, 0)
-visible = false
 
 [node name="Cube" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
 transform = Transform3D(2, 0, 0, 0, 20, 0, 0, 0, 50, 0, -5, 0)
@@ -127,7 +129,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0258167, 14.5, 37.4513)
 shape = SubResource("BoxShape3D_3fori")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00463867, 14.51, -12.4546)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00463867, 10.0254, -12.4546)
 shape = SubResource("BoxShape3D_cf7j6")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
@@ -135,24 +137,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0616455, -15.4981, 0.000122
 shape = SubResource("BoxShape3D_o3axy")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 12, -39.0234)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 11.162, -39.0234)
 shape = SubResource("BoxShape3D_l4aa4")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 7.00485, -46.1849)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 6.19284, -46.1849)
 shape = SubResource("BoxShape3D_l4aa4")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 4.51542, -49.7695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 3.6726, -49.7695)
 shape = SubResource("BoxShape3D_l4aa4")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 2.00522, -53.3694)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 1.20363, -53.3694)
 shape = SubResource("BoxShape3D_l4aa4")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0102234, -0.996889, -75.007)
 shape = SubResource("BoxShape3D_jpptj")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0196838, -0.466221, 37.4489)
+shape = SubResource("BoxShape3D_ax8dh")
 
 [node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_obllv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0355583, 0.0480585, 0.065089)
@@ -162,7 +168,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0919654, 1.30328, -0.06508
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player/CameraMount"]
 transform = Transform3D(-4.37114e-08, -0.139173, 0.990268, 0, 0.990268, 0.139173, -1, 6.08345e-09, -4.3286e-08, 6.94978, 0.795944, 0)
-visible = false
 
 [node name="PostProcessing" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player/CameraMount/Camera3D"]
 transform = Transform3D(-4.37114e-08, 4.44089e-16, -1, -0.139173, 0.990268, 6.08345e-09, 0.990268, 0.139173, -4.3286e-08, 3.01319e-07, -1.16702, -7.12513)

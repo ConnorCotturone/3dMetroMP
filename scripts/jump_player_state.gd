@@ -32,7 +32,7 @@ func process_physics(delta: float) -> State:
 	var direction = (head.transform.basis * Vector3(0, 0, input_direction))
 	if direction:
 		parent.velocity.y = -jump_force
-		parent.velocity.z = direction.z * move_speed
+		parent.velocity.z = direction.z * sprint_speed
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():

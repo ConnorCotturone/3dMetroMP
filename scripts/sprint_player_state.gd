@@ -7,7 +7,7 @@ var idle_state: State
 @export
 var jump_state: State
 @export
-var sprint_state: State
+var move_state: State
 
 @onready var head: Node3D = $"../../Head"
 @onready var player: Node3D = $"../../Visuals/TempCharacter"
@@ -15,11 +15,13 @@ var sprint_state: State
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_pressed('jump') and parent.is_on_floor():
 		return jump_state
-	if Input.is_action_pressed("sprint"):
-		return sprint_state
+	if !Input.is_action_pressed("sprint") && (Input.is_action_pressed("left") || Input.is_action_pressed("right")):
+		return move_state
 	return null
 
 func process_physics(delta: float) -> State:
+
+	
 	var input_direction = Input.get_axis('left', 'right') 
 	
 	if input_direction == 0:
@@ -30,8 +32,8 @@ func process_physics(delta: float) -> State:
 		player.rotation = Vector3(0, 135.0, 0)
 
 	var direction = (head.transform.basis * Vector3(0, 0, input_direction))
-	if direction:
-		parent.velocity.z = direction.z * move_speed
+	if direction && Input.is_action_pressed("sprint"):
+		parent.velocity.z = direction.z * sprint_speed
 	parent.move_and_slide()
 	
 	if !parent.is_on_floor():

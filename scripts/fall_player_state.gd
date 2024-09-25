@@ -9,7 +9,6 @@ var move_state: State
 @onready var player: Node3D = $"../../Visuals/TempCharacter"
 
 
-
 func process_physics(delta: float) -> State:
 	parent.velocity += parent.get_gravity() * delta
 	

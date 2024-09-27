@@ -15,8 +15,7 @@ var sprint_state: State
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_pressed('jump') and parent.is_on_floor():
 		return jump_state
-	if Input.is_action_pressed("sprint"):
-		return sprint_state
+	
 	return null
 
 func process_physics(delta: float) -> State:
@@ -33,6 +32,9 @@ func process_physics(delta: float) -> State:
 	if direction:
 		parent.velocity.z = direction.z * move_speed
 	parent.move_and_slide()
+	
+	if Input.is_action_pressed("sprint"):
+		return sprint_state
 	
 	if !parent.is_on_floor():
 		return fall_state

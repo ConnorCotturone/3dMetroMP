@@ -8,9 +8,8 @@ var move_speed: float = 5.0
 @export
 var sprint_speed: float = 7.0
 
-var gravity: int = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-## Hold a reference to the parent so that it can be controlled by the state
+var fall_gravity: float = 10.0 #ProjectSettings.get_setting("physics/3d/default_gravity")
+var jump_gravity: float = 5.0
 var parent: Player
 
 func enter() -> void:

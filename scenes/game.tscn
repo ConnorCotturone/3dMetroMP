@@ -171,7 +171,6 @@ transform = Transform3D(-4.37114e-08, -0.139173, 0.990268, 0, 0.990268, 0.139173
 
 [node name="PostProcessing" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player/CameraMount/Camera3D"]
 transform = Transform3D(-4.37114e-08, 4.44089e-16, -1, -0.139173, 0.990268, 6.08345e-09, 0.990268, 0.139173, -4.3286e-08, 3.01319e-07, -1.16702, -7.12513)
-visible = false
 extra_cull_margin = 522.55
 mesh = SubResource("QuadMesh_ydpao")
 skeleton = NodePath("../../../../..")

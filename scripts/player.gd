@@ -10,6 +10,7 @@ func _ready() -> void:
 	if animation_player:
 		animation_player.speed_scale = 1.5
 	player_state_machine.init(self)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	player_state_machine.process_input(event)

@@ -8,18 +8,42 @@ var idle_state: State
 var move_state: State
 
 @export
-var jump_force: float = 4.5
+var jump_speed: float = 5.0
+@export
+var jump_velocity: float = 5.0
+@export
+var jump_peak_time: float = 0.5
+@export
+var jump_fall_time: float = 0.5
+@export
+var jump_height: float = 2.0
+@export
+var jump_distance: float = 4.0
 
-@onready var head: Node3D = $"../../Head"
-@onready var player: Node3D = $"../../Visuals/TempCharacter"
+@onready 
+var head: Node3D = $"../../Head"
+@onready 
+var player: Node3D = $"../../Visuals/TempCharacter"
 
+func calculate_jump_parameters() -> void:
+	jump_gravity = (2 * jump_height) / pow(jump_peak_time, 2)
+	fall_gravity = (2 * jump_height) / pow(jump_peak_time, 2)	
+	jump_velocity = jump_gravity * jump_peak_time
 
 func enter() -> void:
 	super()
 	#parent.velocity.y = -jump_force
 
-func process_physics(delta: float) -> State:	
-	if parent.velocity.y > 0:
+func _ready() -> void:
+	calculate_jump_parameters()
+
+func process_physics(delta: float) -> State:
+	print(parent.velocity.y)
+	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
+		parent.velocity.y = jump_velocity
+		print("SETTING JV")
+	
+	if parent.velocity.y < 0:
 		return fall_state
 	
 	var input_direction = Input.get_axis('left', 'right') 
@@ -30,9 +54,12 @@ func process_physics(delta: float) -> State:
 		player.rotation = Vector3(0, 135.0, 0)
 		
 	var direction = (head.transform.basis * Vector3(0, 0, input_direction))
-	if direction:
-		parent.velocity.y = -jump_force
-		parent.velocity.z = direction.z * sprint_speed
+	parent.velocity.y -= jump_gravity * delta
+	#if input_direction == 0:
+		# prob broken since you want the entire jump animation to play regardless
+		#return fall_state
+	#else:
+	parent.velocity.z = direction.z * sprint_speed
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():

@@ -5,12 +5,15 @@ var idle_state: State
 @export
 var move_state: State
 
+
 @onready var head: Node3D = $"../../Head"
 @onready var player: Node3D = $"../../Visuals/TempCharacter"
 
 
 func process_physics(delta: float) -> State:
-	parent.velocity += parent.get_gravity() * delta
+	print(parent.velocity.y)
+	
+	parent.velocity += Vector3(0.0, -fall_gravity, 0.0) * delta
 	
 	var input_direction = Input.get_axis('left', 'right') 
 	
@@ -23,6 +26,8 @@ func process_physics(delta: float) -> State:
 	var direction = (head.transform.basis * Vector3(0, 0, input_direction))
 	if direction:
 		parent.velocity.z = direction.z * move_speed
+	else:
+		parent.velocity.z = 0.0
 	
 	if parent.is_on_floor():
 		if input_direction != 0:

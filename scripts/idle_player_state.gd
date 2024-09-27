@@ -23,8 +23,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	parent.velocity += parent.get_gravity() * delta
-	parent.move_and_slide()
+	#parent.velocity += Vector3(0.0, -fall_gravity, 0.0) * delta
+	#parent.move_and_slide()
 	
 	if !parent.is_on_floor():
 		return fall_state

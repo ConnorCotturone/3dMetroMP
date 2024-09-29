@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://sw8q6uvs2w2s"]
+[gd_scene load_steps=35 format=4 uid="uid://sw8q6uvs2w2s"]
 
 [ext_resource type="PackedScene" uid="uid://cq7kt253434ah" path="res://assets/chunk-3.glb" id="1_fejn0"]
 [ext_resource type="Texture2D" uid="uid://c5oxk5do3mam6" path="res://assets/temp_world/skybox2.jpg" id="1_i71e3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjyhphlkm2wx8" path="res://assets/temp_world/test-map2.glb" id="2_ak73e"]
 [ext_resource type="Shader" path="res://scripts/main.gdshader" id="3_qaw8g"]
 [ext_resource type="PackedScene" uid="uid://mlde0g4vos65" path="res://assets/bk-test.glb" id="7_hemtw"]
+[ext_resource type="PackedScene" uid="uid://c3o1dbp8abwb5" path="res://assets/rock-test2.glb" id="8_6etji"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0413c"]
 panorama = ExtResource("1_i71e3")
@@ -343,3 +344,6 @@ shape = SubResource("BoxShape3D_j8m1x")
 
 [node name="bk-test2" parent="." instance=ExtResource("7_hemtw")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -12.75, -100, 46.656)
+
+[node name="rock-test2" parent="." instance=ExtResource("8_6etji")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.23431, -0.0744582, -0.218545)

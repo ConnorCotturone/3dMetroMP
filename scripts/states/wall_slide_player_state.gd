@@ -7,8 +7,8 @@ var fall_state: State
 @export
 var move_state: State
 # specific jump animation needed
-#@export
-#var jump_state: State
+@export
+var jump_state: State
 
 @onready 
 var left_ray_cast: RayCast3D = $"../../LeftRayCast"
@@ -28,10 +28,21 @@ func process_input(event: InputEvent) -> State:
 	elif Input.is_action_pressed("right") && !right_ray_cast.is_colliding():
 		player.rotation = Vector3(0.0, 0.0, 0.0)
 		return process_state_change(fall_state)
+		
+	# broken
+	if Input.is_action_pressed("jump") && !left_ray_cast.is_colliding():
+		# input direction needed
+		print("wall jump")
+		parent.velocity.z = -3;
+		return process_state_change(jump_state)
+	elif Input.is_action_pressed("jump") && !right_ray_cast.is_colliding():
+		parent.velocity.z = 3;
+		return process_state_change(jump_state)
 	
 	return null
 
 func process_physics(delta: float) -> State:
+	
 	if !parent.is_on_floor():
 		parent.velocity += Vector3(0.0, -wall_slide_gravity, 0.0) * delta
 	else:

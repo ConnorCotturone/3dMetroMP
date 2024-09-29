@@ -12,13 +12,13 @@ var jump_speed: float = 5.0
 @export
 var jump_velocity: float = 5.0
 @export
-var jump_peak_time: float = 0.5
+var jump_peak_time: float = 0.45
+#@export
+#var jump_fall_time: float = 0.5
 @export
-var jump_fall_time: float = 0.5
+var jump_height: float = 3.75
 @export
-var jump_height: float = 2.0
-@export
-var jump_distance: float = 5.0
+var jump_distance: float = 6.75
 
 
 @onready 

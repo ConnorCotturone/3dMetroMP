@@ -10,9 +10,9 @@ var move_speed: float = 6.0
 @export
 var sprint_speed: float = 9.0
 
-var fall_gravity:       float = 15.0
+var fall_gravity:       float = 25.0
 var jump_gravity:       float = 5.0
-var wall_slide_gravity: float = 1.6
+var wall_slide_gravity: float = .4
 var terminal_velocity: float  = -60.0
 
 var parent: Player

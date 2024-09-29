@@ -6,11 +6,10 @@ var animation_name: String
 @export
 var animation_speed: float = 1.5
 @export
-var move_speed: float = 5.0
+var move_speed: float = 6.0
 @export
-var sprint_speed: float = 7.0
+var sprint_speed: float = 9.0
 
-var state_name: String
 var fall_gravity:       float = 15.0
 var jump_gravity:       float = 5.0
 var wall_slide_gravity: float = 1.6
@@ -29,10 +28,15 @@ func process_input(event: InputEvent) -> State:
 
 func process_state_change(state_togo: State) -> State:
 	var state_name = (state_togo.name).replace("PlayerState", "")
+	#if state_name == "Walk":
+	#	print("doin it")
+	#	parent.animation_player.speed_scale = 22
+	#else:
+	#	parent.animation_player.speed_scale = 1.5
 	parent.animation_player_state_machine.travel(state_name)
 	return state_togo
 
-func process_frame(delta: float) -> State:	
+func process_frame(delta: float) -> State:
 	#parent.animation_player.speed_scale = animation_speed
 	#parent.animation_player.play("AnimationHeap/" + animation_name)
 	#parent.animation_player_state_machine.travel(String(state_togo.state_name))

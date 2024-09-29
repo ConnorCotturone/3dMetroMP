@@ -12,9 +12,6 @@ var move_state: State
 @onready var head: Node3D = $"../../Head"
 @onready var player: Node3D = $"../../Visuals/TempCharacter"
 
-func enter() -> void:
-	state_name = "Sprint"
-
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_pressed('jump') and parent.is_on_floor():
 		return process_state_change(jump_state)

@@ -32,9 +32,9 @@ func calculate_jump_parameters() -> void:
 	jump_velocity = jump_gravity * jump_peak_time
 
 func enter() -> void:
-	super()
-	state_name = "Jump"
+	#super()
 	#parent.velocity.y = -jump_force
+	pass
 
 func _ready() -> void:
 	calculate_jump_parameters()

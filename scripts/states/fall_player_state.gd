@@ -12,9 +12,6 @@ var sprint_state: State
 @onready var head: Node3D = $"../../Head"
 @onready var player: Node3D = $"../../Visuals/TempCharacter"
 
-func enter() -> void:
-	state_name = "Fall"
-
 func process_physics(delta: float) -> State:
 	if parent.velocity.y > terminal_velocity:
 		#print("Fall Vel=", parent.velocity.y)
@@ -43,6 +40,6 @@ func process_physics(delta: float) -> State:
 				return process_state_change(sprint_state)
 			return process_state_change(move_state)
 		return process_state_change(idle_state)
-	if parent.is_on_wall_only() && !Input.is_action_pressed("left") && !Input.is_action_pressed("right"):
+	if parent.is_on_wall_only()&& !Input.is_action_just_pressed("left") && !Input.is_action_just_pressed("right"):
 		return process_state_change(wall_slide_state)
 	return null

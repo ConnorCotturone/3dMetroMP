@@ -11,7 +11,6 @@ var sprint_state: State
 
 func enter() -> void:
 	super()
-	state_name = "Idle"
 	parent.velocity.z = 0
 
 func process_input(event: InputEvent) -> State:
